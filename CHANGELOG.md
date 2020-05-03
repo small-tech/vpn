@@ -9,16 +9,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
   - `help` option.
+  - Install script.
 
 ### Fixed
 
-  - Improved the readme.
+  - Typography.
+  - Readme.
 
 ## [1.1.0] - 2020-05-03
 
 ### Changed
 
-  - Rename `down` option to `off`.
+  - Renamed `down` option to `off`.
 
 ### Added
 
