@@ -2,6 +2,8 @@
 
 An elegant command-line interface for AzireVPN’s Wireguard service.
 
+![Screenshot](screenshot.png)
+
 ## Install
 
 Copy and paste the following command into your terminal. Before you pipe any script into your computer, always [view the source code](install) and make sure you understand what it does.
