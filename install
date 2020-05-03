@@ -1,5 +1,11 @@
 #!/bin/bash
 
+set -e
+
+echo '\n 📡 Downloading vpn v1.2.0…\n'
+
+wget -qO /tmp/vpn "https://source.small-tech.org/aral/vpn/-/raw/master/vpn?inline=false"
+
 lightPurple='\e[38;5;134m'
 colorEnd='\e[0m'
 
@@ -7,7 +13,8 @@ echo
 echo -e " 📦 Installing…"
 
 sudo mkdir -p /usr/local/bin/
-sudo cp ./vpn /usr/local/bin/
+sudo cp /tmp/vpn /usr/local/bin/
+sudo chmod +x /usr/local/bin/vpn
 
 echo -e " 🎉 Done!"
 echo
