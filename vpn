@@ -55,6 +55,17 @@ if [[ $1 == '?' ]]; then
   exit 0
 fi
 
+if [[ $1 == 'ls' ]]; then
+  output="Location===Code\n------------===------------"
+  for location in "${!locationsToServerCodes[@]}"
+  do
+    output="${output}\n${serverCodesToLocations[${locationsToServerCodes[${location}]}]}===$location"
+  done
+  echo
+  echo -e "$output" | column -t -s ===
+  exit 0
+fi
+
 if [[ $1 == 'down' ]]; then
   action='down'
   if [[ $currentConnection == '' ]]; then
