@@ -1,0 +1,16 @@
+#!/bin/bash
+
+lightPurple='\e[38;5;134m'
+colorEnd='\e[0m'
+
+echo
+echo -e " 📦 Installing…"
+
+sudo mkdir -p /usr/local/bin/
+sudo cp ./vpn /usr/local/bin/
+
+echo -e " 🎉 Done!"
+echo
+echo -e "To start type ${lightPurple}vpn${colorEnd}."
+echo -e "For help type ${lightPurple}vpn help${colorEnd}."
+echo
