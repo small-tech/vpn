@@ -125,7 +125,7 @@ else
     wg-quick down "azirevpn-${currentConnection}" > /dev/null 2>&1
   fi
 
-  echo -e "\n 📡 Connecting to AzireVPN in ${serverCodesToLocations[${serverCode}]}…"
+  echo -e " 📡 Connecting to AzireVPN in ${serverCodesToLocations[${serverCode}]}…"
 fi
 
 server="azirevpn-${serverCode}"
