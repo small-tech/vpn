@@ -1,26 +1,16 @@
-The current command-line interface for using [AzireVPN](https://www.azirevpn.com/)’s excellent [Wireguard](https://www.wireguard.com/) service that I’ve been using since the early days of the beta goes something like this:
+# vpn
 
-1. Memorise the codes for [the servers](https://www.azirevpn.com/docs/servers#servers) (which you can find in _/etc/wireguard_ and which look like _azirevpn-se1_ for Sweden and _azirevpn-dk1_ Denmark, etc.)
+An elegant command-line interface for AzireVPN’s Wireguard service.
 
-2. `wg-quick up azirevpn-se1` to connect to, say, Sweden.
-
-3. `wg-quick down azirevpn-se1` to disconnect, say, from Sweden.
-
-4. To query your connection status, either run `ifconfig | grep azire` or `sudo wg show`.
-
-That’s not terrible but it’s not exactly elegant.
-
-So today, which I designate as national yak shaving day, I wrote a tiny bash script to make it easier.
-
-## Installation
-
-Save the script, below, to somewhere on your path (like _/usr/local/bin_) and give it execute permissions:
+## Install
 
 ```sh
-chmod +x vpn
+git clone https://source.small-tech.org/aral/vpn
+cd vpn
+sudo cp ./vpn /usr/local/bin/
 ```
 
-## Usage
+## Use
 
 ### Connect to the default server
 
@@ -59,7 +49,7 @@ Sample output:
 
 ```
 Location      Code
-------------  ------------
+────────────  ────────────
 Spain         spain
 Norway        norway
 Netherlands   netherlands
@@ -100,3 +90,17 @@ Sample output:
 What I really want to do is to write a little status bar app for it that automatically connects on untrusted networks and does so to the nearest server by default but this should tide me over till then.
 
 Hope you enjoy it!
+
+## Like this? Fund us!
+
+[Small Technology Foundation](https://small-tech.org) is a tiny, independent not-for-profit.
+
+We exist in part thanks to patronage by people like you. If you share [our vision](https://small-tech.org/about/#small-technology) and want to support our work, please [become a patron or donate to us](https://small-tech.org/fund-us) today and help us continue to exist.
+
+## Copyright
+
+&copy; 2020 [Aral Balkan](https://ar.al), [Small Technology Foundation](https://small-tech.org).
+
+## License
+
+[AGPL version 3.0 or later.](https://www.gnu.org/licenses/agpl-3.0.en.html)

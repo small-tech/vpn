@@ -13,6 +13,19 @@
 
 set -e
 
+version='1.2.0'
+
+# AzireVPN uses purples; so shall we :)
+darkPurple='\e[38;5;61m'
+lightPurple='\e[38;5;134m'
+colorEnd='\e[0m'
+
+echo
+echo -e "${darkPurple}╔═══════════════════════════════════════════╗${colorEnd}"
+echo -e "${darkPurple}║${colorEnd}${lightPurple} vpn v${version} ­– AzireVPN Wireguard interface ${colorEnd}${darkPurple}║${colorEnd}"
+echo -e "${darkPurple}╚═══════════════════════════════════════════╝${colorEnd}"
+echo
+
 action='up'
 
 currentConnection=`ifconfig | grep azirevpn- | cut -c10-12`
@@ -45,9 +58,34 @@ locationsToServerCodes=(
   ['us']='us1'
 )
 
+function displayLocations () {
+  echo -e "  Currently supported locations and their location codes:"
+
+  output="  Location===  Code\n  ────────────===  ────────────"
+  for location in "${!locationsToServerCodes[@]}"
+  do
+    output="${output}\n  ${serverCodesToLocations[${locationsToServerCodes[${location}]}]}===  $location"
+  done
+  echo
+  echo -e "${output}" | column -t -s ===
+}
+
+if [[ $1 == 'help' || $1 == 'h' || $1 == '--help' || $1 == '-h' || $1 == '--help' ]]; then
+  output='  vpn [location code]===Turn on VPN and connect to default or specified location code.\n'
+  output="${output}  vpn off===Turn VPN off.\n"
+  output="${output}  vpn ls===List supported locations and location codes.\n"
+  output="${output}  vpn ?===Display the current connection status.\n"
+  output="${output}  vpn help===Display this help screen."
+  echo -e "${output}" | column -t -s ===
+  echo
+  displayLocations
+
+  exit 0
+fi
+
 if [[ $1 == '?' ]]; then
   if [[ $currentConnection == '' ]]; then
-    echo -e "\n ❌ You are not connected to AzireVPN via Wireguard.\n"
+    echo -e " ❌ You are not connected to AzireVPN via Wireguard.\n"
     exit 1
   fi
   location="${serverCodesToLocations[${currentConnection}]}"
@@ -56,24 +94,18 @@ if [[ $1 == '?' ]]; then
 fi
 
 if [[ $1 == 'ls' ]]; then
-  output="Location===Code\n------------===------------"
-  for location in "${!locationsToServerCodes[@]}"
-  do
-    output="${output}\n${serverCodesToLocations[${locationsToServerCodes[${location}]}]}===$location"
-  done
-  echo
-  echo -e "$output" | column -t -s ===
+  displayLocations
   exit 0
 fi
 
 if [[ $1 == 'off' ]]; then
   action='down'
   if [[ $currentConnection == '' ]]; then
-    echo -e "\n ❌ You are not connected to AzireVPN via Wireguard.\n"
+    echo -e " ❌ You are not connected to AzireVPN via Wireguard.\n"
     exit 1
   fi
   serverCode=$currentConnection
-  echo -e "\n 👋 Disconnecting from AzireVPN in ${serverCodesToLocations[${currentConnection}]}…"
+  echo -e " 👋 Disconnecting from AzireVPN in ${serverCodesToLocations[${currentConnection}]}…"
 else
   location=$1
 
@@ -85,13 +117,12 @@ else
 
   if [[ $currentConnection != '' ]]; then
     if [[ $currentConnection == $serverCode ]]; then
-      echo -e "\n 😁👍 You’re already connected to that VPN server.\n"
+      echo -e " 😁👍 You’re already connected to AzireVPN in ${serverCodesToLocations[${currentConnection}]}.\n"
       exit
     fi
 
-    printf "\n 👋 Disconnecting existing connection…"
+    printf " 👋 Disconnecting existing connection…"
     wg-quick down "azirevpn-${currentConnection}" > /dev/null 2>&1
-    exit
   fi
 
   echo -e "\n 📡 Connecting to AzireVPN in ${serverCodesToLocations[${serverCode}]}…"
