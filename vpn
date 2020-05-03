@@ -21,9 +21,9 @@ lightPurple='\e[38;5;134m'
 colorEnd='\e[0m'
 
 echo
-echo -e "${darkPurple}╔═══════════════════════════════════════════╗${colorEnd}"
-echo -e "${darkPurple}║${colorEnd}${lightPurple} vpn v${version} ­– AzireVPN Wireguard interface ${colorEnd}${darkPurple}║${colorEnd}"
-echo -e "${darkPurple}╚═══════════════════════════════════════════╝${colorEnd}"
+echo -e "  ${darkPurple}╔═══════════════════════════════════════════╗${colorEnd}"
+echo -e "  ${darkPurple}║${colorEnd}${lightPurple} vpn v${version} ­– AzireVPN Wireguard interface ${colorEnd}${darkPurple}║${colorEnd}"
+echo -e "  ${darkPurple}╚═══════════════════════════════════════════╝${colorEnd}"
 echo
 
 action='up'
@@ -59,23 +59,23 @@ locationsToServerCodes=(
 )
 
 function displayLocations () {
-  echo -e "  Currently supported locations and their location codes:"
+  echo -e "    Currently supported locations and their location codes:"
 
-  output="  Location===  Code\n  ────────────===  ────────────"
+  output="    Location===    Code\n    ────────────===    ────────────"
   for location in "${!locationsToServerCodes[@]}"
   do
-    output="${output}\n  ${serverCodesToLocations[${locationsToServerCodes[${location}]}]}===  $location"
+    output="${output}\n    ${serverCodesToLocations[${locationsToServerCodes[${location}]}]}===    $location"
   done
   echo
   echo -e "${output}" | column -t -s ===
 }
 
 if [[ $1 == 'help' || $1 == 'h' || $1 == '--help' || $1 == '-h' || $1 == '--help' ]]; then
-  output='  vpn [location code]===Turn on VPN and connect to default or specified location code.\n'
-  output="${output}  vpn off===Turn VPN off.\n"
-  output="${output}  vpn ls===List supported locations and location codes.\n"
-  output="${output}  vpn ?===Display the current connection status.\n"
-  output="${output}  vpn help===Display this help screen."
+  output='    vpn [location code]===Turn on VPN and connect to default/specified location.\n'
+  output="${output}    vpn off===Turn VPN off.\n"
+  output="${output}    vpn ls===List supported locations and location codes.\n"
+  output="${output}    vpn ?===Display the current connection status.\n"
+  output="${output}    vpn help===Display this help screen."
   echo -e "${output}" | column -t -s ===
   echo
   displayLocations
@@ -89,7 +89,7 @@ if [[ $1 == '?' ]]; then
     exit 1
   fi
   location="${serverCodesToLocations[${currentConnection}]}"
-  echo -e "\n ✅ You’re connected to AzireVPN in ${location} via Wireguard.\n"
+  echo -e " ✅ You’re connected to AzireVPN in ${location} via Wireguard.\n"
   exit 0
 fi
 
