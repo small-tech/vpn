@@ -1,0 +1,93 @@
+#!/bin/bash
+
+######################################################################
+#
+# Wireguard connection/disconnection helper for AzireVPN.
+#
+# Copyright © 2020 Aral Balkan, Small Technology Foundation.
+# License: AGPL version 3.0 or later.
+#
+# Like this? Fund us! https://small-tech.org/fund-us
+#
+######################################################################
+
+set -e
+
+action='up'
+
+currentConnection=`ifconfig | grep azirevpn- | cut -c10-12`
+
+declare -A serverCodesToLocations
+serverCodesToLocations=(
+  ['ca1']='Canada'
+  ['dk1']='Denmark'
+  ['es1']='Spain'
+  ['nl1']='Netherlands'
+  ['no1']='Norway'
+  ['se1']='Sweden'
+  ['se2']='Sweden (2)'
+  ['th1']='Thailand'
+  ['uk1']='UK'
+  ['us1']='US'
+)
+
+declare -A locationsToServerCodes
+locationsToServerCodes=(
+  ['canada']='ca1'
+  ['denmark']='dk1'
+  ['spain']='es1'
+  ['netherlands']='nl1'
+  ['norway']='no1'
+  ['sweden']='se1'
+  ['sweden2']='se2'
+  ['thailand']='th1'
+  ['uk']='uk1'
+  ['us']='us1'
+)
+
+if [[ $1 == '?' ]]; then
+  if [[ $currentConnection == '' ]]; then
+    echo -e "\n ❌ You are not connected to AzireVPN via Wireguard.\n"
+    exit 1
+  fi
+  location="${serverCodesToLocations[${currentConnection}]}"
+  echo -e "\n ✅ You’re connected to AzireVPN in ${location} via Wireguard.\n"
+  exit 0
+fi
+
+if [[ $1 == 'down' ]]; then
+  action='down'
+  if [[ $currentConnection == '' ]]; then
+    echo -e "\n ❌ You are not connected to AzireVPN via Wireguard.\n"
+    exit 1
+  fi
+  serverCode=$currentConnection
+  echo -e "\n 👋 Disconnecting from AzireVPN in ${serverCodesToLocations[${currentConnection}]}…"
+else
+  location=$1
+
+  if [[ $1 == '' ]]; then
+    location='uk'
+  fi
+
+  serverCode="${locationsToServerCodes[${location}]}"
+
+  if [[ $currentConnection != '' ]]; then
+    if [[ $currentConnection == $serverCode ]]; then
+      echo -e "\n 😁👍 You’re already connected to that VPN server.\n"
+      exit
+    fi
+
+    printf "\n 👋 Disconnecting existing connection…"
+    wg-quick down "azirevpn-${currentConnection}" > /dev/null 2>&1
+    exit
+  fi
+
+  echo -e "\n 📡 Connecting to AzireVPN in ${serverCodesToLocations[${serverCode}]}…"
+fi
+
+server="azirevpn-${serverCode}"
+
+wg-quick "${action}" "${server}" > /dev/null 2>&1
+
+echo -e " ✅ Done.\n"
