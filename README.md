@@ -49,12 +49,33 @@ Sample output:
  ✅ Done.
 ```
 
-Currently supported countries (all lowercase): canada, denmark, spain, netherlands, norway, sweden, sweden2, thailand, uk, us.
+### Get list of currently supported servers
+
+```sh
+▶ vpn netherlands
+```
+
+Sample output:
+
+```
+Location      Code
+------------  ------------
+Spain         spain
+Norway        norway
+Netherlands   netherlands
+US            us
+UK            uk
+Denmark       denmark
+Sweden (2)    sweden2
+Thailand      thailand
+Canada        canada
+Sweden        sweden
+```
 
 ### Disconnect
 
 ```sh
-▶ vpn down
+▶ vpn off
 ```
 
 Sample output:
