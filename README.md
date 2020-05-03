@@ -52,7 +52,7 @@ Sample output:
 ### Get list of currently supported servers
 
 ```sh
-▶ vpn netherlands
+▶ vpn ls
 ```
 
 Sample output:
