@@ -117,7 +117,7 @@ else
 
   if [[ $currentConnection != '' ]]; then
     if [[ $currentConnection == $serverCode ]]; then
-      echo -e " 😁👍 You’re already connected to AzireVPN in ${serverCodesToLocations[${currentConnection}]}.\n"
+      echo -e " ✅ You’re already connected to AzireVPN in ${serverCodesToLocations[${currentConnection}]}.\n"
       exit
     fi
 

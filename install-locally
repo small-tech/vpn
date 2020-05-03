@@ -2,11 +2,20 @@
 
 set -e
 
+version='1.2.0'
+
+# AzireVPN uses purples; so shall we :)
+darkPurple='\e[38;5;61m'
 lightPurple='\e[38;5;134m'
 colorEnd='\e[0m'
 
 echo
-echo -e " 📦 Installing…"
+echo -e "  ${darkPurple}╔═══════════════════════════════════════════╗${colorEnd}"
+echo -e "  ${darkPurple}║${colorEnd}${lightPurple} vpn v${version} ­– AzireVPN Wireguard interface ${colorEnd}${darkPurple}║${colorEnd}"
+echo -e "  ${darkPurple}╚═══════════════════════════════════════════╝${colorEnd}"
+echo
+
+echo -e " 📦 Installing locally…"
 
 sudo mkdir -p /usr/local/bin/
 sudo cp ./vpn /usr/local/bin/
