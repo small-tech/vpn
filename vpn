@@ -123,6 +123,7 @@ else
 
     printf " 👋 Disconnecting existing connection…"
     wg-quick down "azirevpn-${currentConnection}" > /dev/null 2>&1
+    echo
   fi
 
   echo -e " 📡 Connecting to AzireVPN in ${serverCodesToLocations[${serverCode}]}…"
