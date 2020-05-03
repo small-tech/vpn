@@ -7,7 +7,7 @@ An elegant command-line interface for AzireVPN’s Wireguard service.
 Copy and paste the following command into your terminal. Before you pipe any script into your computer, always [view the source code](install) and make sure you understand what it does.
 
 ```sh
-sudo wget -qO- https://source.small-tech.org/aral/vpn/-/raw/master/install?inline=false | bash
+wget -qO- https://source.small-tech.org/aral/vpn/-/raw/master/install?inline=false | bash
 ```
 
 ## Use
