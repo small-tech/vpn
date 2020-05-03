@@ -66,7 +66,7 @@ if [[ $1 == 'ls' ]]; then
   exit 0
 fi
 
-if [[ $1 == 'down' ]]; then
+if [[ $1 == 'off' ]]; then
   action='down'
   if [[ $currentConnection == '' ]]; then
     echo -e "\n ❌ You are not connected to AzireVPN via Wireguard.\n"
