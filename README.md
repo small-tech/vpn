@@ -77,6 +77,8 @@ Sample output:
  ✅ Done.
 ```
 
+(You can also use the aliases `down` and `disconnect` if you prefer.)
+
 ### Get connection status
 
 ```sh
