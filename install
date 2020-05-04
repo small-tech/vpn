@@ -2,7 +2,7 @@
 
 set -e
 
-version='1.4.0'
+version='1.4.1'
 
 # AzireVPN uses purples; so shall we :)
 darkPurpleBackground='\e[48;5;54m'
@@ -17,7 +17,7 @@ echo -e "${lineStart}  vpn v${version} ­– AzireVPN Wireguard interface  ${lin
 echo -e "${lineStart}                                             ${lineEnd}"
 echo
 
-echo -e ' 📡 Downloading vpn v1.2.0…'
+echo -e " 📡 Downloading vpn v${version}…"
 
 wget -qO /tmp/vpn "https://source.small-tech.org/aral/vpn/-/raw/master/vpn?inline=false"
 
