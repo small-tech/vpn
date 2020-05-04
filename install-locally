@@ -2,17 +2,19 @@
 
 set -e
 
-version='1.3.0'
+version='1.4.0'
 
 # AzireVPN uses purples; so shall we :)
-darkPurple='\e[38;5;61m'
-lightPurple='\e[38;5;134m'
-colorEnd='\e[0m'
+darkPurpleBackground='\e[48;5;54m'
+lightPurpleForeground='\e[38;5;177m'
+padding='  '
+lineStart="${padding}${darkPurpleBackground}${lightPurpleForeground}"
+lineEnd='\e[0m'
 
 echo
-echo -e "  ${darkPurple}╔═══════════════════════════════════════════╗${colorEnd}"
-echo -e "  ${darkPurple}║${colorEnd}${lightPurple} vpn v${version} ­– AzireVPN Wireguard interface ${colorEnd}${darkPurple}║${colorEnd}"
-echo -e "  ${darkPurple}╚═══════════════════════════════════════════╝${colorEnd}"
+echo -e "${lineStart}                                             ${lineEnd}"
+echo -e "${lineStart}  vpn v${version} ­– AzireVPN Wireguard interface  ${lineEnd}"
+echo -e "${lineStart}                                             ${lineEnd}"
 echo
 
 echo -e " 📦 Installing locally…"
