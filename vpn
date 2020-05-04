@@ -2,7 +2,7 @@
 
 ######################################################################
 #
-# Wireguard connection/disconnection helper for AzireVPN.
+# WireGuard connection/disconnection helper for AzireVPN.
 #
 # Copyright © 2020 Aral Balkan, Small Technology Foundation.
 # License: AGPL version 3.0 or later.
@@ -13,7 +13,7 @@
 
 set -e
 
-version='1.4.1'
+version='1.4.2'
 
 # AzireVPN uses purples; so shall we :)
 darkPurpleBackground='\e[48;5;54m'
@@ -24,7 +24,7 @@ lineEnd='\e[0m'
 
 echo
 echo -e "${lineStart}                                             ${lineEnd}"
-echo -e "${lineStart}  vpn v${version} ­– AzireVPN Wireguard interface  ${lineEnd}"
+echo -e "${lineStart}  vpn v${version} ­– AzireVPN WireGuard interface  ${lineEnd}"
 echo -e "${lineStart}                                             ${lineEnd}"
 echo
 
@@ -93,11 +93,11 @@ fi
 
 if [[ $1 == '?' ]]; then
   if [[ $currentConnection == '' ]]; then
-    echo -e " ❌ You are not connected to AzireVPN via Wireguard.\n"
+    echo -e " ❌ You are not connected to AzireVPN via WireGuard.\n"
     exit 1
   fi
   location="${serverCodesToLocations[${currentConnection}]}"
-  echo -e " ✅ You’re connected to AzireVPN in ${location} via Wireguard.\n"
+  echo -e " ✅ You’re connected to AzireVPN in ${location} via WireGuard.\n"
   exit 0
 fi
 
@@ -109,7 +109,7 @@ fi
 if [[ $1 == 'off' || $1 == 'down' || $1 == 'disconnect' ]]; then
   action='down'
   if [[ $currentConnection == '' ]]; then
-    echo -e " ❌ You are not connected to AzireVPN via Wireguard.\n"
+    echo -e " ❌ You are not connected to AzireVPN via WireGuard.\n"
     exit 1
   fi
   serverCode=$currentConnection

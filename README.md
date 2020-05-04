@@ -1,6 +1,6 @@
 # vpn
 
-An elegant command-line interface for AzireVPN’s Wireguard service.
+An elegant command-line interface for AzireVPN’s WireGuard service.
 
 ![Screenshot](screenshot.png)
 
@@ -90,7 +90,7 @@ Sample output:
 Sample output:
 
 ```
- ❌ You are not connected to AzireVPN via Wireguard.
+ ❌ You are not connected to AzireVPN via WireGuard.
 ```
 
 What I really want to do is to write a little status bar app for it that automatically connects on untrusted networks and does so to the nearest server by default but this should tide me over till then.
