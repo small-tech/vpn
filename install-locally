@@ -2,7 +2,7 @@
 
 set -e
 
-version='1.4.1'
+version='1.4.2'
 
 # AzireVPN uses purples; so shall we :)
 darkPurpleBackground='\e[48;5;54m'
@@ -13,7 +13,7 @@ lineEnd='\e[0m'
 
 echo
 echo -e "${lineStart}                                             ${lineEnd}"
-echo -e "${lineStart}  vpn v${version} ­– AzireVPN Wireguard interface  ${lineEnd}"
+echo -e "${lineStart}  vpn v${version} ­– AzireVPN WireGuard interface  ${lineEnd}"
 echo -e "${lineStart}                                             ${lineEnd}"
 echo
 
